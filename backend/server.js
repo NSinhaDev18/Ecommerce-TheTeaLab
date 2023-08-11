@@ -2,12 +2,16 @@ const app = require("./app.js");
 
 const dotenv = require("dotenv");
 
-const db = require("./models");
+const sequelizeDb = require("./models/database.js");
+const Customer = require("./models/customerModel.js");
+const Order = require("./models/orderModel.js");
+const OrderItem = require("./models/orderModel.js");
 
 //config
 dotenv.config({ path: "backend/config/config.env" });
+
 (async () => {
-  await db.sequelize.sync();
+  await sequelizeDb.sync();
 })();
 
 app.listen(process.env.PORT, () => {

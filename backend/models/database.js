@@ -8,6 +8,10 @@ const sequelizeDb = new Sequelize(
   {
     host: dbConfig.HOST,
     dialect: dbConfig.DIALECT,
+    port: dbConfig.PORT,
+    dialectOptions: {
+      ssl: true,
+    },
   }
 );
 
