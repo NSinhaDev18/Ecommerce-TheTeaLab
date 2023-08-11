@@ -1,15 +1,21 @@
 const Sequelize = require("sequelize");
 const sequelizeDb = require("../models/database");
+const Order = require("./orderModel");
+const OrderItem = require("./orderModel");
 
-const customer = sequelizeDb.define("customer", {
-  id: {
+const Customer = sequelizeDb.define("customers", {
+  customerId: {
     type: Sequelize.INTEGER,
     autoIncrement: true,
     primaryKey: true,
     allowNull: false,
   },
-  name: {
-    type: Sequelize.STRING(10),
+  firstName: {
+    type: Sequelize.STRING(20),
+    allowNull: false,
+  },
+  lastName: {
+    type: Sequelize.STRING(20),
     allowNull: false,
   },
   email: {
@@ -26,7 +32,7 @@ const customer = sequelizeDb.define("customer", {
     allowNull: false,
   },
 });
-
+Customer.hasMany(Order);
 //use bcrypt, JWT token, compare password, password reset token, hashing.. to be added
 
-module.exports = customer;
+module.exports = Customer;
